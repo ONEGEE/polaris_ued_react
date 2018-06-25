@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 const HeaderWraper = styled.div`
 	background: #000;
@@ -10,7 +11,17 @@ const HeaderWraper = styled.div`
 `
 
 const Header = () => {
-	return <HeaderWraper>Header</HeaderWraper>
+	return (
+		<HeaderWraper>
+			<ul>
+				<li>
+					<NavLink to='/'>Polaris</NavLink>
+					<NavLink to='readme'>ReadMe</NavLink>
+					<NavLink to='dev'>Dev</NavLink>
+				</li>
+			</ul>
+		</HeaderWraper>
+	)
 }
 
 export default Header
