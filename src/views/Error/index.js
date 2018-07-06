@@ -1,7 +1,8 @@
 import React from 'react'
+import Layout from '@/layouts/Layout'
 
 const Error = () => {
-	return <div>404</div>
+	return <Layout>404</Layout>
 }
 
 export default Error

@@ -16,8 +16,11 @@ const Header = () => {
 			<ul>
 				<li>
 					<NavLink to='/'>Polaris</NavLink>
-					<NavLink to='readme'>ReadMe</NavLink>
-					<NavLink to='dev'>Dev</NavLink>
+					<NavLink to='/'>Home</NavLink>
+					<NavLink to='/readme'>ReadMe</NavLink>
+					<NavLink to='/dev'>Dev</NavLink>
+					<NavLink to='/library'>Library</NavLink>
+					<NavLink to='/resources'>Resources</NavLink>
 				</li>
 			</ul>
 		</HeaderWraper>
