@@ -14,12 +14,13 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 const App = () => (
 	<Router>
 		<Switch>
-			<Route exact path='/' component={Home} />
-			<Route exact path='/readme' component={ReadMe} />
+			<Route exact path='/' render={() => <Redirect to='/home/' />} />
+			<Route exact path='/home/' component={Home} />
+			<Route path='/readme/:catagory' component={ReadMe} />
 			<Route exact path='/dev/' component={Dev} />
-			<Route exact path='/library' component={Library} />
-			<Route exact path='/resources' component={Resources} />
-			<Route path='/error' component={Error} />
+			<Route exact path='/library/' component={Library} />
+			<Route exact path='/resources/' component={Resources} />
+			<Route path='/error/' component={Error} />
 			<Route path='*' render={(props) => <Redirect to='/error' />} />
 		</Switch>
 	</Router>
