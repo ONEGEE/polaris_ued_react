@@ -1,10 +1,9 @@
 import React from 'react'
 import Layout from '@/layouts/Layout'
 import { Menu, Grid } from 'semantic-ui-react'
-import { Route, NavLink } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Doc from '@/components/Doc'
 import { query } from '@/utils/query'
-import { EHOSTUNREACH } from 'constants'
 
 export class Readme extends React.Component {
 	state = {
