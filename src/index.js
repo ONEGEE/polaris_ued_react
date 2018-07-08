@@ -18,7 +18,7 @@ const App = () => (
 			<Route exact path='/home/' component={Home} />
 			<Route path='/readme/:catagory' component={ReadMe} />
 			<Route exact path='/dev/' component={Dev} />
-			<Route exact path='/library/' component={Library} />
+			<Route path='/library/:version' component={Library} />
 			<Route exact path='/resources/' component={Resources} />
 			<Route path='/error/' component={Error} />
 			<Route path='*' render={(props) => <Redirect to='/error' />} />

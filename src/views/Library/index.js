@@ -1,8 +1,15 @@
 import React from 'react'
 import Layout from '@/layouts/Layout'
+import Header from '@/layouts/Header'
 
-const ReadMe = () => {
-	return <Layout>Sketch Library</Layout>
+const Library = () => {
+	return (
+		<div>
+			<Header />
+			<iframe src='/pages/' width='100%' height='500px' />
+			Sketch Library
+		</div>
+	)
 }
 
-export default ReadMe
+export default Library
