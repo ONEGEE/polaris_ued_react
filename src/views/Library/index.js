@@ -6,7 +6,7 @@ const Library = () => {
 	return (
 		<div>
 			<Header />
-			<iframe src='/pages/' width='100%' height='500px' />
+			<iframe src='http://localhost:8888/library/0.1/' width='100%' height='500px' />
 			Sketch Library
 		</div>
 	)
