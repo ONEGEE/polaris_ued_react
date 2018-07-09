@@ -1,4 +1,7 @@
+const makeLibraryTOC = require('./makeLibraryTOC')
+
 module.exports = () => {
+	const libraryTOC = makeLibraryTOC.make()
 	const db = {
 		docsList: [
 			{
@@ -47,7 +50,8 @@ module.exports = () => {
 				title: 'Log',
 				desc: 'Log by versions.'
 			}
-		]
+		],
+		libraryTOC
 	}
 	return db
 }

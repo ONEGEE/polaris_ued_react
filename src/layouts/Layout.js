@@ -16,13 +16,34 @@ const StyledFooter = styled(Footer)`
 `
 export class Layout extends Component {
 	render () {
+		let { type = 'default' } = this.props
+
 		return (
 			<React.Fragment>
-				<StyledHeader />
-				<StyledMain>
-					<Container>{this.props.children}</Container>
-				</StyledMain>
-				<StyledFooter />
+				{(() => {
+					switch (type) {
+						case 'headerOnly':
+							return (
+								<React.Fragment>
+									<StyledHeader />
+									<StyledMain>
+										<Container>{this.props.children}</Container>
+									</StyledMain>
+								</React.Fragment>
+							)
+						case 'default':
+						default:
+							return (
+								<React.Fragment>
+									<StyledHeader />
+									<StyledMain>
+										<Container>{this.props.children}</Container>
+									</StyledMain>
+									<StyledFooter />
+								</React.Fragment>
+							)
+					}
+				})()}
 			</React.Fragment>
 		)
 	}

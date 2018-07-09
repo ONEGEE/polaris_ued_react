@@ -15,9 +15,11 @@
 		"build": "react-app-rewired build",
 		"test": "react-app-rewired test --env=jsdom",
 		"eject": "react-scripts eject",
-		"mock": "json-server --watch --port 8888 public/mock/db.js --routes public/mock/routes.json --static public/mock/static"
+		"mock": "nodemon --watch public --exec 'json-server --watch --port 8888 public/json-server/db.js --routes public/json-server/routes.json --static public/json-server'"
 	},
 	"devDependencies": {
+		"json-server": "^0.14.0",
+		"nodemon": "^1.17.5",
 		"react-app-rewired": "^1.5.2"
 	}
 }
