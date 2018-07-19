@@ -1,33 +1,40 @@
-import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { Segment, Container, Menu, Header as Title } from 'semantic-ui-react'
+/*
+ * @Author: onegee 
+ * @Date: 2018-07-13 01:17:01 
+ * @Last Modified by: onegee
+ * @Last Modified time: 2018-07-13 01:17:51
+ */
+import React from "react"
+import { Link, withRouter } from "react-router-dom"
+import { Segment, Container, Menu, Header as Title } from "semantic-ui-react"
 
 class Header extends React.Component {
-	handleItemClick = (path) => {
+	handleItemClick = path => {
 		this.props.history.push(path)
 	}
-	render () {
+
+	render() {
 		const { location } = this.props
 		let navList = [
 			{
-				name: 'home',
-				path: '/home/'
+				name: "home",
+				path: "/home/"
 			},
 			{
-				name: 'readme',
-				path: '/readme/intro'
+				name: "readme",
+				path: "/readme/intro"
 			},
 			{
-				name: 'dev',
-				path: '/dev/'
+				name: "dev",
+				path: "/dev/"
 			},
 			{
-				name: 'library',
-				path: '/library/'
+				name: "library",
+				path: "/library/project"
 			},
 			{
-				name: 'resources',
-				path: '/resources/'
+				name: "resources",
+				path: "/resources/"
 			}
 		]
 
@@ -37,7 +44,7 @@ class Header extends React.Component {
 				<Menu.Item
 					name={nav.name}
 					active={reg.test(location.pathname)}
-					as='a'
+					as="a"
 					onClick={() => this.handleItemClick(nav.path)}
 					key={index}
 				/>
@@ -49,11 +56,11 @@ class Header extends React.Component {
 				<Container>
 					<Menu inverted pointing secondary>
 						<Menu.Item>
-							<Link to='/home/'>
+							<Link to="/home/">
 								<Title inverted>Polaris</Title>
 							</Link>
 						</Menu.Item>
-						<Menu.Menu position='right'>{makeMenuItem}</Menu.Menu>
+						<Menu.Menu position="right">{makeMenuItem}</Menu.Menu>
 					</Menu>
 				</Container>
 			</Segment>
