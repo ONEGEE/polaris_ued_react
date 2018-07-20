@@ -1,15 +1,9 @@
-/*
- * @Author: onegee 
- * @Date: 2018-07-13 01:17:01 
- * @Last Modified by: onegee
- * @Last Modified time: 2018-07-13 01:17:51
- */
-import React from "react"
-import { Link, withRouter } from "react-router-dom"
-import { Segment, Container, Menu, Header as Title } from "semantic-ui-react"
+import React from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import { Segment, Container, Menu, Header as Title } from 'semantic-ui-react'
 
 class Header extends React.Component {
-	handleItemClick = path => {
+	handleItemClick = (path) => {
 		this.props.history.push(path)
 	}
 
@@ -17,24 +11,24 @@ class Header extends React.Component {
 		const { location } = this.props
 		let navList = [
 			{
-				name: "home",
-				path: "/home/"
+				name: 'home',
+				path: '/home/'
 			},
 			{
-				name: "readme",
-				path: "/readme/intro"
+				name: 'readme',
+				path: '/readme/'
 			},
 			{
-				name: "dev",
-				path: "/dev/"
+				name: 'dev',
+				path: '/dev/'
 			},
 			{
-				name: "library",
-				path: "/library/project"
+				name: 'library',
+				path: '/library/project'
 			},
 			{
-				name: "resources",
-				path: "/resources/"
+				name: 'resources',
+				path: '/resources/'
 			}
 		]
 

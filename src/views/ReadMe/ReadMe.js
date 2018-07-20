@@ -1,63 +1,62 @@
 import React from 'react'
 import Layout from '@/layouts/Layout'
-import { Menu, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import { Route } from 'react-router-dom'
+
 import Docs from '@/components/Docs'
-import { query } from '@/utils/query'
+import DocMenu from '@/components/DocMenu'
+
+import { getDocsList, getActiveDocByGuid } from '@/services/query'
+import { formatDocTitleToPath } from '@/utils/format'
 
 export class ReadMe extends React.Component {
 	state = {
 		docsList: [],
-		activeDocs: {
-			title: '',
-			path: ' ',
-			guid: 1
-		}
+		activeDocContent: {}
 	}
 
 	componentDidMount() {
-		query('/docs/list').then((res) => res.json()).then((data) => {
-			let { title, path, guid } = data[0]
-			title = title.replace(/\s/g, '-').toLowerCase()
-			this.setState({ docsList: data, activeDocs: { title, path, guid } })
+		this.setDocsList()
+	}
+
+	setDocsList = () => {
+		getDocsList().then((data) => {
+			this.setState({ docsList: data }, () => {
+				this.setDefaultRoutePath(data[0])
+			})
 		})
 	}
 
-	setDocs = (title, path, guid) => {
-		this.setState({ activeDocs: { title, path, guid } }, () => this.props.history.push(path))
+	setActiveDocByGuid = (guid) => {
+		getActiveDocByGuid(guid).then((data) => this.setState({ activeDocContent: data }))
+	}
+
+	setDefaultRoutePath = (data) => {
+		this.props.history.push(formatDocTitleToPath(data.title))
+		this.setActiveDocByGuid(data.guid)
 	}
 
 	render() {
-		const makeMenuList = this.state.docsList.map((docsItem, index) => {
-			let path = docsItem.title.replace(/\s/g, '-').toLowerCase()
-			return (
-				<Menu.Item
-					name={docsItem.title}
-					active={path === this.props.match.params.catagory}
-					onClick={() => this.setDocs(docsItem.title, path, docsItem.guid)}
-					key={index}
-				/>
-			)
-		})
-
+		const { match } = this.props
 		return (
 			<Layout>
 				<Grid>
 					<Grid.Column width={4}>
-						<Menu text vertical>
-							{makeMenuList}
-						</Menu>
+						<Route
+							path={`${match.url}/:category?`}
+							render={(props) => (
+								<DocMenu
+									{...props}
+									data={this.state.docsList}
+									setActiveDocByGuid={this.setActiveDocByGuid}
+								/>
+							)}
+						/>
 					</Grid.Column>
 					<Grid.Column width={12}>
 						<Route
-							path={'/readme/:title'}
-							render={(props) => (
-								<Docs
-									{...props}
-									title={this.state.activeDocs.title}
-									guid={this.state.activeDocs.guid}
-								/>
-							)}
+							path={`${match.url}/:category?`}
+							render={(props) => <Docs {...props} data={this.state.activeDocContent} />}
 						/>
 					</Grid.Column>
 				</Grid>

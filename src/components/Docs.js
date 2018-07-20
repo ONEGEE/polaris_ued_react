@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Header } from 'semantic-ui-react'
-import { query } from '@/utils/query'
 
 export class Docs extends Component {
 	state = {
@@ -13,13 +12,13 @@ export class Docs extends Component {
 	}
 
 	queryDocs = () => {
-		query(`/docs/details/${this.props.guid}`)
-			.then((res) => res.json())
-			.then((data) => this.setState({ title: data.title, desc: data.desc }))
+		// query(`/docs/details/${this.props.guid}`)
+		// 	.then((res) => res.json())
+		// 	.then((data) => this.setState({ title: data.title, desc: data.desc }))
 	}
 
 	render() {
-		const { title, desc } = this.state
+		const { title, desc } = this.props.data
 		return (
 			<div>
 				<Header as={'h1'}>{title}</Header>

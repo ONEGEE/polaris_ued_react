@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '@/layouts/Layout'
-import { query } from '@/utils/query'
+import { getLibraryTOC } from '@/services/query'
 import { Grid, Menu, Card, Image } from 'semantic-ui-react'
 import { Route, Switch } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ class Library extends React.Component {
 	}
 
 	componentDidMount() {
-		query('/libraryTOC').then((res) => res.json()).then((data) =>
+		getLibraryTOC().then((data) =>
 			this.setState({ library: data }, () => {
 				let linkto = data[0].versions[0].path.replace('/ui-library', '')
 				this.props.history.push(`/library${linkto}`)
