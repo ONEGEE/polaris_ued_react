@@ -1,15 +1,15 @@
 /*
  * @Author: onegee 
  * @Date: 2018-07-13 01:15:42 
- * @Last Modified by:   onegee 
- * @Last Modified time: 2018-07-13 01:15:42 
+ * @Last Modified by: onegee
+ * @Last Modified time: 2018-07-20 11:28:54
  */
 
-import React from "react"
-import Layout from "@/layouts/Layout"
-import { query } from "@/utils/query"
-import { Grid, Menu, Card, Image } from "semantic-ui-react"
-import { Route, Switch } from "react-router-dom"
+import React from 'react'
+import Layout from '@/layouts/Layout'
+import { query } from '@/utils/query'
+import { Grid, Menu, Card, Image } from 'semantic-ui-react'
+import { Route, Switch } from 'react-router-dom'
 
 class Library extends React.Component {
 	state = {
@@ -18,13 +18,16 @@ class Library extends React.Component {
 	}
 
 	componentDidMount() {
-		query("/libraryTOC")
-			.then(res => res.json())
-			.then(data => this.setState({ library: data }))
+		query('/libraryTOC').then((res) => res.json()).then((data) =>
+			this.setState({ library: data }, () => {
+				let linkto = data[0].versions[0].path.replace('/ui-library', '')
+				this.props.history.push(`/library${linkto}`)
+			})
+		)
 	}
 
 	handlerVersionsClick(path) {
-		let linkto = path.replace("/ui-library", "")
+		let linkto = path.replace('/ui-library', '')
 		this.props.history.push(`/library${linkto}`)
 	}
 
@@ -35,19 +38,19 @@ class Library extends React.Component {
 
 		let pageRoute = []
 
-		const setProject = library.map(project => {
+		const setProject = library.map((project) => {
 			return (
 				<Menu text vertical key={project.path}>
 					<Menu.Item header>{project.name}</Menu.Item>
-					{project.versions.map(version => {
+					{project.versions.map((version) => {
 						let { pages } = version
 						pageRoute.push(
 							<Route
-								path={`/library${version.path.replace("/ui-library", "")}`}
+								path={`/library${version.path.replace('/ui-library', '')}`}
 								// link='/library/:path'
 								render={() => (
 									<Card.Group itemsPerRow={4}>
-										{pages.map(page => {
+										{pages.map((page) => {
 											return (
 												<Card
 													target="_blank"
@@ -88,20 +91,20 @@ class Library extends React.Component {
 
 		let moduleItems = [
 			{
-				header: "ModuleItem",
-				meta: "7 days ago",
-				href: "/sketchmeasure/"
+				header: 'ModuleItem',
+				meta: '7 days ago',
+				href: '/sketchmeasure/'
 				// onClick: () => {
 				// 	history.push('/d')
 				// }
 			},
 			{
-				header: "ModuleItem-1",
-				meta: "7 days ago"
+				header: 'ModuleItem-1',
+				meta: '7 days ago'
 			},
 			{
-				header: "ModuleItem-2",
-				meta: "7 days ago"
+				header: 'ModuleItem-2',
+				meta: '7 days ago'
 			}
 		]
 
