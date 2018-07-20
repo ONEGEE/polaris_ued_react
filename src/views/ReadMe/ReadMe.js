@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom'
 import Docs from '@/components/Docs'
 import DocMenu from '@/components/DocMenu'
 
-import { getDocsList, getActiveDocByGuid } from '@/services/query'
+import { getDocsList, getDocByGuid } from '@/services/query'
 import { formatDocTitleToPath } from '@/utils/format'
 
 export class ReadMe extends React.Component {
@@ -28,7 +28,7 @@ export class ReadMe extends React.Component {
 	}
 
 	setActiveDocByGuid = (guid) => {
-		getActiveDocByGuid(guid).then((data) => this.setState({ activeDocContent: data }))
+		getDocByGuid(guid).then((data) => this.setState({ activeDocContent: data }))
 	}
 
 	setDefaultRoutePath = (data) => {
@@ -38,26 +38,31 @@ export class ReadMe extends React.Component {
 
 	render() {
 		const { match } = this.props
+
+		const MenuRoute = () => (
+			<Route
+				path={`${match.url}/:category?`}
+				render={(props) => (
+					<DocMenu {...props} data={this.state.docsList} setActiveDocByGuid={this.setActiveDocByGuid} />
+				)}
+			/>
+		)
+
+		const DocsRoute = () => (
+			<Route
+				path={`${match.url}/:category?`}
+				render={(props) => <Docs {...props} data={this.state.activeDocContent} />}
+			/>
+		)
+
 		return (
 			<Layout>
 				<Grid>
 					<Grid.Column width={4}>
-						<Route
-							path={`${match.url}/:category?`}
-							render={(props) => (
-								<DocMenu
-									{...props}
-									data={this.state.docsList}
-									setActiveDocByGuid={this.setActiveDocByGuid}
-								/>
-							)}
-						/>
+						<MenuRoute />
 					</Grid.Column>
 					<Grid.Column width={12}>
-						<Route
-							path={`${match.url}/:category?`}
-							render={(props) => <Docs {...props} data={this.state.activeDocContent} />}
-						/>
+						<DocsRoute />
 					</Grid.Column>
 				</Grid>
 			</Layout>

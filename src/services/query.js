@@ -9,6 +9,6 @@ export const query = (path, options) => {
 
 export const getDocsList = () => query('/docs/list')
 
-export const getActiveDocByGuid = (guid) => query(`/docs/details/${guid}`)
+export const getDocByGuid = (guid) => query(`/docs/details/${guid}`)
 
 export const getLibraryTOC = () => query('/libraryTOC')
