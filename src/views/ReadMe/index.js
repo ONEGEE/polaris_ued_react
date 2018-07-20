@@ -10,7 +10,7 @@ export class Readme extends React.Component {
 		docsList: [],
 		activeDocs: {
 			title: '',
-			path: '',
+			path: ' ',
 			guid: 1
 		}
 	}
