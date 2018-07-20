@@ -1,10 +1,3 @@
-/*
- * @Author: onegee 
- * @Date: 2018-07-13 01:15:42 
- * @Last Modified by: onegee
- * @Last Modified time: 2018-07-20 12:53:18
- */
-
 import React from 'react'
 import Layout from '@/layouts/Layout'
 import { query } from '@/utils/query'
@@ -32,8 +25,6 @@ class Library extends React.Component {
 	}
 
 	render() {
-		let { history } = this.props
-
 		let { library } = this.state
 
 		let pageRoute = []
