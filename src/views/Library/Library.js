@@ -80,25 +80,6 @@ class Library extends React.Component {
 			)
 		})
 
-		let moduleItems = [
-			{
-				header: 'ModuleItem',
-				meta: '7 days ago',
-				href: '/sketchmeasure/'
-				// onClick: () => {
-				// 	history.push('/d')
-				// }
-			},
-			{
-				header: 'ModuleItem-1',
-				meta: '7 days ago'
-			},
-			{
-				header: 'ModuleItem-2',
-				meta: '7 days ago'
-			}
-		]
-
 		return (
 			<Layout type="headerOnly">
 				<Grid>
