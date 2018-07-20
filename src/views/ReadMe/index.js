@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '@/layouts/Layout'
 import { Menu, Grid } from 'semantic-ui-react'
 import { Route } from 'react-router-dom'
-import Doc from '@/components/Doc'
+import Docs from '@/components/Docs'
 import { query } from '@/utils/query'
 
 export class Readme extends React.Component {
@@ -52,7 +52,11 @@ export class Readme extends React.Component {
 						<Route
 							path={'/readme/:title'}
 							render={(props) => (
-								<Doc {...props} title={this.state.activeDocs.title} guid={this.state.activeDocs.guid} />
+								<Docs
+									{...props}
+									title={this.state.activeDocs.title}
+									guid={this.state.activeDocs.guid}
+								/>
 							)}
 						/>
 					</Grid.Column>

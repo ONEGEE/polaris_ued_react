@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Header } from 'semantic-ui-react'
 import { query } from '@/utils/query'
 
-export class Doc extends Component {
+export class Docs extends Component {
 	state = {
 		title: '',
 		desc: ''
 	}
 
-	componentWillReceiveProps () {
+	componentWillReceiveProps() {
 		this.queryDocs()
 	}
 
@@ -18,7 +18,7 @@ export class Doc extends Component {
 			.then((data) => this.setState({ title: data.title, desc: data.desc }))
 	}
 
-	render () {
+	render() {
 		const { title, desc } = this.state
 		return (
 			<div>
@@ -29,4 +29,4 @@ export class Doc extends Component {
 	}
 }
 
-export default Doc
+export default Docs
