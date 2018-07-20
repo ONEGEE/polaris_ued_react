@@ -9,27 +9,31 @@ export class Readme extends React.Component {
 	state = {
 		docsList: [],
 		activeDocs: {
-			title: 'Intro',
-			path: 'intro',
+			title: '',
+			path: '',
 			guid: 1
 		}
 	}
 
-	componentDidMount () {
-		query('/docs/list').then((res) => res.json()).then((data) => this.setState({ docsList: data }))
+	componentDidMount() {
+		query('/docs/list').then((res) => res.json()).then((data) => {
+			let { title, path, guid } = data[0]
+			title = title.replace(/\s/g, '-').toLowerCase()
+			this.setState({ docsList: data, activeDocs: { title, path, guid } })
+		})
 	}
 
 	setDocs = (title, path, guid) => {
 		this.setState({ activeDocs: { title, path, guid } }, () => this.props.history.push(path))
 	}
 
-	render () {
+	render() {
 		const makeMenuList = this.state.docsList.map((docsItem, index) => {
 			let path = docsItem.title.replace(/\s/g, '-').toLowerCase()
 			return (
 				<Menu.Item
 					name={docsItem.title}
-					active={path === this.state.activeDocs.path}
+					active={path === this.props.match.params.catagory}
 					onClick={() => this.setDocs(docsItem.title, path, docsItem.guid)}
 					key={index}
 				/>
