@@ -3,33 +3,40 @@ import Layout from '@/layouts/Layout'
 import { getLibraryTOC } from '@/services/query'
 import { Grid, Menu, Card, Image } from 'semantic-ui-react'
 import { Route, Switch } from 'react-router-dom'
+import { removeLibraryDirnameAsPath } from '@/utils/format'
 
 class Library extends React.Component {
 	state = {
-		library: [],
+		libraryTOC: [],
 		currentPages: []
 	}
 
 	componentDidMount() {
+		this.setLibraryTOC()
+	}
+
+	setLibraryTOC = () => {
 		getLibraryTOC().then((data) =>
-			this.setState({ library: data }, () => {
-				let linkto = data[0].versions[0].path.replace('/library', '')
-				this.props.history.push(`/library${linkto}`)
+			this.setState({ libraryTOC: data }, () => {
+				this.setDefaultLibraryVersionsRoutePath(data)
 			})
 		)
 	}
 
+	setDefaultLibraryVersionsRoutePath = (libraryTOC) => {
+		this.props.history.push(libraryTOC[0].versions[0].path)
+	}
+
 	handlerVersionsClick(path) {
-		let linkto = path.replace('/library', '')
-		this.props.history.push(`/library${linkto}`)
+		this.props.history.push(path)
 	}
 
 	render() {
-		let { library } = this.state
+		let { libraryTOC } = this.state
 
 		let pageRoute = []
 
-		const setProject = library.map((project) => {
+		const setProject = libraryTOC.map((project) => {
 			return (
 				<Menu text vertical key={project.path}>
 					<Menu.Item header>{project.name}</Menu.Item>
