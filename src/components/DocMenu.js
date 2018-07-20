@@ -1,12 +1,12 @@
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
-import { formatDocTitleToPath } from '@/utils/format'
+import { formatDocTitleAsPath } from '@/utils/format'
 
 const DocMenu = ({ data, match, history, setActiveDocByGuid }) => {
 	return (
 		<Menu text vertical>
 			{data.map((item) => {
-				let path = formatDocTitleToPath(item.title)
+				let path = formatDocTitleAsPath(item.title)
 				return (
 					<Menu.Item
 						name={item.title}

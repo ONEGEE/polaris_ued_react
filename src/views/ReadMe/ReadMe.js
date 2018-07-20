@@ -7,7 +7,7 @@ import Docs from '@/components/Docs'
 import DocMenu from '@/components/DocMenu'
 
 import { getDocsList, getDocByGuid } from '@/services/query'
-import { formatDocTitleToPath } from '@/utils/format'
+import { formatDocTitleAsPath } from '@/utils/format'
 
 export class ReadMe extends React.Component {
 	state = {
@@ -32,7 +32,7 @@ export class ReadMe extends React.Component {
 	}
 
 	setDefaultRoutePath = (data) => {
-		this.props.history.push(formatDocTitleToPath(data.title))
+		this.props.history.push(formatDocTitleAsPath(data.title))
 		this.setActiveDocByGuid(data.guid)
 	}
 
