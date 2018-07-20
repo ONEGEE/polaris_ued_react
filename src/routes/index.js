@@ -15,7 +15,7 @@ const ReactRouter = () => {
 			<Switch>
 				<Route exact path="/" render={() => <Redirect to="/home/" />} />
 				<Route exact path="/home/" component={Home} />
-				<Route path="/readme/:catagory" component={ReadMe} />
+				<Route path="/readme" component={ReadMe} />
 				<Route exact path="/dev/" component={Dev} />
 				<Route path="/library/:project" component={Library} />
 				<Route exact path="/resources/" component={Resources} />
