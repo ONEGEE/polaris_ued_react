@@ -6,7 +6,7 @@ const path = require('path')
 module.exports = {
 	make: () => {
 		let libraryTOC
-		let libraryDirName = 'ui-library'
+		let libraryDirName = 'library'
 		let libraryAbsolutePath = path.resolve(__dirname, libraryDirName)
 
 		const getSubDirsList = (dirAbsolutePath) => {

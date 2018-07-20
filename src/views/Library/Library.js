@@ -13,14 +13,14 @@ class Library extends React.Component {
 	componentDidMount() {
 		getLibraryTOC().then((data) =>
 			this.setState({ library: data }, () => {
-				let linkto = data[0].versions[0].path.replace('/ui-library', '')
+				let linkto = data[0].versions[0].path.replace('/library', '')
 				this.props.history.push(`/library${linkto}`)
 			})
 		)
 	}
 
 	handlerVersionsClick(path) {
-		let linkto = path.replace('/ui-library', '')
+		let linkto = path.replace('/library', '')
 		this.props.history.push(`/library${linkto}`)
 	}
 
@@ -37,7 +37,7 @@ class Library extends React.Component {
 						let { pages } = version
 						pageRoute.push(
 							<Route
-								path={`/library${version.path.replace('/ui-library', '')}`}
+								path={`/library${version.path.replace('/library', '')}`}
 								// link='/library/:path'
 								render={() => (
 									<Card.Group itemsPerRow={4}>
